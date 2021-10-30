@@ -13,8 +13,6 @@ var myMap = L.map("map", {
 d3.json(queryURL).then(function(data) {
     console.log(data.features);
 
-// L.geoJSON(data.features).addTo(myMap)
-
 // Creating circle marker at location of earthquake
 
 L.geoJSON(data, {
@@ -55,13 +53,9 @@ L.geoJSON(data, {
       var mag = feature.properties.mag
       var depth = feature.geometry.coordinates[2]
       var loc = feature.properties.place
-      layer.bindPopup(
-        "Magnitude: "
-          + mag
-          + "<br>Depth: "
-          + depth
-          + "<br>Location: "
-          + loc
+      layer.bindPopup("<b>Magnitude</b><br>" + mag +
+      "<br><b>Depth</b><br>" + depth + 
+      "<br><b>Location</b><br>" + loc 
       );
     }
   })
@@ -94,7 +88,7 @@ legend.onAdd = function() {
     ];
     // Looping through our intervals to generate a label with a colored square for each interval.    
     for (var i = 0; i < grades.length; i++) {      
-      div.innerHTML += "<i style='background: " + colors[i] + "'></i> "      
+      div.innerHTML += "<i style='background-color: " + colors[i] + "'> &nbsp; &nbsp; </i> "      
       + grades[i] + (grades[i + 1] ? "&ndash;" + grades[i + 1] + "<br>" : "+");    
     }    
     return div;  
